@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justin Moran - CV</title>
+    <title>Justin Moran - Interactive CV</title>
+    <meta name="description" content="Justin Moran's interactive curriculum vitae, showcasing experience in research, web development, and psychology, with a focus on learning technologies.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         :root {
             --background-color: #f4f4f4;
@@ -737,7 +739,7 @@
              const skillCategories = document.querySelectorAll('.skill-category h3');
 
              skillCategories.forEach(categoryTitle => {
-                 // Check if it's a touch device or narrow screen (you can adjust the max-width)
+                 // Check if it's a touch device or narrow screen (can adjust max-width)
                  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
                  const isMobileView = window.matchMedia("(max-width: 768px)").matches;
 
