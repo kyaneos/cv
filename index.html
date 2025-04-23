@@ -258,19 +258,26 @@
             <div class="experience-item">
                 <h3>Project Lead & Research Scientist</h3>
                 <p>Jolly Lab @ UCSD (2025–Present)</p>
-                <p>Lead research on online cognition tools with Dr. Eshin Jolly.</p>
+                <p>Lead research on online cognition tools.</p>
+                <p>PI: Eshin Jolly, PhD, Cognitive Neuroscience, Assistant Professor of Psychology - UC San Diego</p>
             </div>
             <div class="experience-item">
                 <h3>Research Assistant</h3>
-                <p>LIME Lab (2024–Present), PSI Lab (2024), UCSD</p>
+                <p>LIME Lab @ UCSD (2024–Present)</p>
+                <p>PI: Dr. Emma Geller, PhD, Cognitive Psychology, Associate Teaching Professor of Psychology - UC San Diego</p>
+                <p>Project Leads: Inez Zung, Alejandro Carranza, Hana Nguyen</p>
+            </div>
+            <div class="experience-item">
+                <h3>Research Assistant</h3>
+                <p>PSI Lab @ UCSD (2024)</p>
+                <p>PI: Dr. Celeste Pilegard, PhD, Psychological and Brain Sciences, Associate Teaching Professor of Psychology - UC San Diego</p>
+                <p>Project Lead: Alan Lopez</p>
             </div>
             <div class="experience-item">
                 <h3>Content & Web Developer</h3>
                 <p>Laboratory of Comparative Human Cognition (2023–2024)</p>
-            </div>
-             <div class="experience-item">
-                <h3>Junior High Leader</h3>
-                <p>North Coast Calvary Chapel (2021–Present)</p>
+                <p>Director/Advisor: Dr. Michael Cole, PhD, Psychology and Human Development, Distinguished Professor of Communication - UC San Diego</p>
+                <p>Lead Developer/Advisor: Bruce Jones</p>
             </div>
         </section>
 
@@ -351,12 +358,12 @@
         if (currentTheme) {
             htmlElement.classList.add(currentTheme);
             if (currentTheme === 'dark-mode') {
-                themeToggleBtn.textContent = '☀️'; // Sun icon for dark mode
+                themeToggleBtn.textContent = 'LIGHT MODE'; // Sun icon for dark mode
                  // Update LinkedIn badge theme if possible (LinkedIn script might re-render)
                  document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
 
             } else {
-                 themeToggleBtn.textContent = '🌙'; // Moon icon for light mode
+                 themeToggleBtn.textContent = 'DARK MODE'; // Moon icon for light mode
                  // Update LinkedIn badge theme
                  document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
 
@@ -364,7 +371,7 @@
         } else {
              // Default to light mode if no preference is found
              htmlElement.classList.add('light-mode');
-             themeToggleBtn.textContent = '🌙'; // Moon icon for light mode
+             themeToggleBtn.textContent = 'DARK MODE'; // Moon icon for light mode
              document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light'); // Default badge theme
         }
 
@@ -373,7 +380,7 @@
             if (htmlElement.classList.contains('light-mode')) {
                 htmlElement.classList.remove('light-mode');
                 htmlElement.classList.add('dark-mode');
-                themeToggleBtn.textContent = '☀️'; // Change to sun
+                themeToggleBtn.textContent = 'LIGHT MODE'; // Change to sun
                 localStorage.setItem('theme', 'dark-mode');
                 // Attempt to update LinkedIn badge theme (might require re-initialization if badge JS supports it)
                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
@@ -381,7 +388,7 @@
             } else {
                 htmlElement.classList.remove('dark-mode');
                 htmlElement.classList.add('light-mode');
-                themeToggleBtn.textContent = '🌙'; // Change to moon
+                themeToggleBtn.textContent = 'DARK MODE'; // Change to moon
                 localStorage.setItem('theme', 'light-mode');
                  // Attempt to update LinkedIn badge theme
                  document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
