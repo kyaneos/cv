@@ -289,7 +289,23 @@
             color: var(--header-text);
             padding: 30px 20px;
             text-align: center;
+            font-size: 0.9em; /* Smaller font for footer text */
         }
+         footer p {
+             margin: 5px 0;
+         }
+         footer a {
+             color: var(--header-text);
+             text-decoration: none;
+             margin: 0 5px;
+             opacity: 0.8;
+             transition: opacity 0.3s ease;
+         }
+         footer a:hover {
+             opacity: 1;
+             text-decoration: underline;
+         }
+
         /* CSS to center the LinkedIn badge container */
          footer .linkedin-badge-container {
              display: flex;
@@ -595,7 +611,7 @@
         </section>
 
         <footer>
-            <p>&copy; 2025 Justin Moran</p>
+            <p>&copy; 2025 Justin Moran. <a href="cv-template.html" target="_blank" rel="noopener noreferrer">View this as a template</a></p>
             <div class="linkedin-badge-container">
                 <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="thisisjustinmoran" data-version="v1">
                     <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/thisisjustinmoran?trk=profile-badge">Justin Moran</a>
@@ -632,7 +648,9 @@
                  }
 
             } else {
-                 themeToggleBtn.textContent = '☾'; // Moon icon for light mode
+                 htmlElement.classList.remove('dark-mode');
+                 htmlElement.classList.add('light-mode');
+                 themeToggleBtn.textContent = '☾'; // Change to moon
                  const linkedinBadge = document.querySelector('.LI-profile-badge');
                  if (linkedinBadge) {
                      linkedinBadge.setAttribute('data-theme', 'light');
