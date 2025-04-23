@@ -233,7 +233,7 @@
 </head>
 <body>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
-        ☀️
+        ☀︎
     </button>
 
     <div class="container">
@@ -358,12 +358,12 @@
         if (currentTheme) {
             htmlElement.classList.add(currentTheme);
             if (currentTheme === 'dark-mode') {
-                themeToggleBtn.textContent = 'LIGHT MODE'; // Sun icon for dark mode
+                themeToggleBtn.textContent = '☀︎'; // Sun icon for dark mode
                  // Update LinkedIn badge theme if possible (LinkedIn script might re-render)
                  document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
 
             } else {
-                 themeToggleBtn.textContent = 'DARK MODE'; // Moon icon for light mode
+                 themeToggleBtn.textContent = '☾'; // Moon icon for light mode
                  // Update LinkedIn badge theme
                  document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
 
@@ -371,7 +371,7 @@
         } else {
              // Default to light mode if no preference is found
              htmlElement.classList.add('light-mode');
-             themeToggleBtn.textContent = 'DARK MODE'; // Moon icon for light mode
+             themeToggleBtn.textContent = '☾'; // Moon icon for light mode
              document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light'); // Default badge theme
         }
 
@@ -380,7 +380,7 @@
             if (htmlElement.classList.contains('light-mode')) {
                 htmlElement.classList.remove('light-mode');
                 htmlElement.classList.add('dark-mode');
-                themeToggleBtn.textContent = 'LIGHT MODE'; // Change to sun
+                themeToggleBtn.textContent = '☀︎'; // Change to sun
                 localStorage.setItem('theme', 'dark-mode');
                 // Attempt to update LinkedIn badge theme (might require re-initialization if badge JS supports it)
                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
@@ -388,7 +388,7 @@
             } else {
                 htmlElement.classList.remove('dark-mode');
                 htmlElement.classList.add('light-mode');
-                themeToggleBtn.textContent = 'DARK MODE'; // Change to moon
+                themeToggleBtn.textContent = '☾'; // Change to moon
                 localStorage.setItem('theme', 'light-mode');
                  // Attempt to update LinkedIn badge theme
                  document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
