@@ -104,7 +104,6 @@
             transform: translateY(0);
         }
 
-
         section:last-child {
             border-bottom: none;
         }
@@ -133,38 +132,128 @@
             margin: 5px 0;
             color: var(--text-color);
         }
+        /* Style for links within experience items */
+        .experience-item a {
+             color: var(--text-color); /* Inherit text color */
+             text-decoration: none;
+             transition: color 0.3s ease;
+        }
+        .experience-item a:hover {
+             color: var(--link-hover-color); /* Use link hover color */
+             text-decoration: underline;
+        }
+
+        /* Styling for the experience details dropdown */
+        .experience-details {
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid var(--section-border);
+            overflow: hidden; /* Hide overflow content */
+            max-height: 0; /* Start hidden */
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        /* Show experience details on hover of the parent experience-item */
+        .experience-item:hover .experience-details {
+            max-height: 500px; /* Adjust as needed to fit content */
+            opacity: 1;
+        }
+
+        /* Remove button styling as it's no longer used for hover */
+        .toggle-details-button {
+           display: none; /* Hide the button */
+        }
 
 
-        .skills-list {
-            list-style: none;
+        /* Styling for skill categories and list */
+        .skill-category {
+            margin-bottom: 15px;
+            border-left: 3px solid var(--section-title-border); /* Match experience item styling */
+            padding-left: 15px;
+        }
+
+        .skill-category h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em; /* Smaller font size for category title */
+            color: var(--text-color);
+            cursor: pointer; /* Indicate it's interactive */
+             /* Add a small arrow or indicator if desired */
+             /* content: '▼'; */
+             /* margin-left: 5px; */
+        }
+
+        .skill-list-details {
+            margin-top: 10px;
+            padding-left: 0; /* Remove left padding here */
+            border-left: none; /* Remove border here */
+            overflow: hidden;
+            max-height: 0; /* Start hidden */
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        /* Show skill details on hover of the H3 (less sensitive) */
+        .skill-category h3:hover + .skill-list-details {
+             max-height: 500px; /* Adjust as needed */
+             opacity: 1;
+        }
+
+         /* Show skill details when the skill-category is clicked (for touch/mobile) */
+         .skill-category.active .skill-list-details {
+             max-height: 500px; /* Adjust as needed */
+             opacity: 1;
+         }
+
+
+        .skill-list-details ul {
+            list-style: none; /* Remove default bullets */
             padding: 0;
-            display: flex;
+            margin: 0;
+            display: flex; /* Use flexbox for bubbles */
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px; /* Space between bubbles */
         }
 
-        .skills-list li {
-            background: var(--skill-bg);
-            color: var(--skill-text);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease;
+        .skill-list-details li {
+             background: var(--skill-bg); /* Apply bubble background */
+             color: var(--skill-text); /* Apply bubble text color */
+             padding: 5px 10px; /* Padding inside bubbles */
+             border-radius: 15px; /* Rounded corners for bubbles */
+             font-size: 0.9em; /* Smaller font size for bubbles */
+             transition: background-color 0.3s ease;
+             flex-shrink: 0; /* Prevent shrinking */
         }
-         .dark-mode .skills-list li {
+         .dark-mode .skill-list-details li {
              background: var(--skill-bg); /* Ensure dark mode skill bg is applied */
          }
 
 
-        .portfolio-item a {
-             color: var(--link-color);
-             text-decoration: none;
-             transition: color 0.3s ease;
+        .portfolio-item {
+             margin-bottom: 25px;
+             padding-left: 0; /* Remove left padding */
+             border-left: none; /* Remove border */
         }
-        .portfolio-item a:hover {
-             color: var(--link-hover-color);
-             text-decoration: underline;
+
+        .portfolio-item h3 {
+             margin: 0 0 5px 0;
+             font-size: 1.3em;
+             color: var(--text-color);
         }
+         .portfolio-item p {
+             margin: 5px 0;
+             color: var(--text-color);
+         }
+         .portfolio-item a {
+              color: var(--link-color);
+              text-decoration: none;
+              transition: color 0.3s ease;
+         }
+         .portfolio-item a:hover {
+              color: var(--link-hover-color);
+              text-decoration: underline;
+         }
+
 
         #contact form {
              display: grid;
@@ -201,7 +290,10 @@
             padding: 30px 20px;
             text-align: center;
         }
-         footer .badge-base {
+        /* CSS to center the LinkedIn badge container */
+         footer .linkedin-badge-container {
+             display: flex;
+             justify-content: center;
              margin-top: 20px; /* Space above LinkedIn badge */
          }
 
@@ -239,10 +331,11 @@
     <div class="container">
         <header>
             <h1>Justin Moran</h1>
-            <p>Research Scientist | UX Learner | Cognitive Psychology Enthusiast</p>
+            <p>Research Scientist | UX Learner | Cognitive Psychologist</p>
             <div class="contact-info">
-                <a href="mailto:jmoran@ucsd.edu">jmoran@ucsd.edu</a> | <a href="mailto:justinmoran002@gmail.com">justinmoran002@gmail.com</a> | 
-                <a href="https://www.linkedin.com/in/thisisjustinmoran" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:jmoran@ucsd.edu">jmoran@ucsd.edu</a> | <a href="mailto:justinmoran002@gmail.com">justinmoran002@gmail.com</a> |
+                <a href="https://www.linkedin.com/in/thisisjustinmoran" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                <a href="https://github.com/kyaneos/" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
         </header>
 
@@ -257,29 +350,47 @@
             <h2>Experience</h2>
             <div class="experience-item">
                 <h3>Project Lead & Research Scientist</h3>
-                <p>Jolly Lab @ UCSD (2025–Present)</p>
-                <p>Lead research on online cognition tools.</p>
-                <p>PI: Eshin Jolly, PhD, Cognitive Neuroscience, Assistant Professor of Psychology - UC San Diego</p>
+                <p><a href="https://eshinjolly.com/lab/" target="_blank" rel="noopener noreferrer">Jolly Lab @ UCSD</a> (2025–Present)</p>
+                 <div class="experience-details">
+                    <p>Lead research on online cognition tools and developing data collection applications.</p>
+                    <p>PI: Eshin Jolly, PhD, Cognitive Neuroscience, Assistant Professor of Psychology - UC San Diego</p>
+                </div>
             </div>
             <div class="experience-item">
                 <h3>Research Assistant</h3>
-                <p>LIME Lab @ UCSD (2024–Present)</p>
-                <p>PI: Dr. Emma Geller, PhD, Cognitive Psychology, Associate Teaching Professor of Psychology - UC San Diego</p>
-                <p>Project Leads: Inez Zung, Alejandro Carranza, Hana Nguyen</p>
+                <p><a href="https://www.lime-lab-ucsd.com/" target="_blank" rel="noopener noreferrer">LIME Lab @ UCSD</a> (2024–Present)</p>
+                <div class="experience-details">
+                    <p>Working with grad students and honors student on their projects. Researching how preconceptions of how much information an individual knows about a subject affects how they subsequently study and recall information about that subject. Researching if judgements of learning during restudy surpasses the benefits of retrieval practice following a typical testing effect paradigm. Researching dual theory of processing in simulated environments. Researching subsumptive learning within a STEM context.</p>
+                    <p>PI: Dr. Emma Geller, PhD, Cognitive Psychology, Associate Teaching Professor of Psychology - UC San Diego</p>
+                    <p>Project Leads: Inez Zung, Alejandro Carranza, Hana Nguyen</p>
+                </div>
             </div>
             <div class="experience-item">
                 <h3>Research Assistant</h3>
-                <p>PSI Lab @ UCSD (2024)</p>
-                <p>PI: Dr. Celeste Pilegard, PhD, Psychological and Brain Sciences, Associate Teaching Professor of Psychology - UC San Diego</p>
-                <p>Project Lead: Alan Lopez</p>
+                <p><a href="https://pilegard.ucsd.edu/psilab" target="_blank" rel="noopener noreferrer">PSI Lab @ UCSD</a> (2024)</p>
+                 <div class="experience-details">
+                     <p>Working with honors student, researching how body language and gestures indicating cause and effect impact retention of causal science lessons.</p>
+                     <p>PI: Dr. Celeste Pilegard, PhD, Psychological and Brain Sciences, Associate Teaching Professor of Psychology - UC San Diego</p>
+                     <p>Project Lead: Alan Lopez</p>
+                 </div>
             </div>
             <div class="experience-item">
                 <h3>Content & Web Developer</h3>
-                <p>Laboratory of Comparative Human Cognition (2023–2024)</p>
-                <p>Director/Advisor: Dr. Michael Cole, PhD, Psychology and Human Development, Distinguished Professor of Communication - UC San Diego</p>
-                <p>Lead Developer/Advisor: Bruce Jones</p>
+                <p><a href="https://lchcautobio.ucsd.edu/justin-moran/" target="_blank" rel="noopener noreferrer">Laboratory of Comparative Human Cognition @ UCSD</a> (2023–2024)</p>
+                 <div class="experience-details">
+                     <p>Developed, maintained, and wrote content for the laboratory website. Also engaged in literature reviews, helped PI and associates organize information for a cultural psychology book they were writing, attended seminars with leading professionals in the field, created graphics, etc.</p>
+                     <p>Director/Advisor: Dr. Michael Cole, PhD, Psychology and Human Development, Distinguished Professor of Communication - UC San Diego</p>
+                     <p>Lead Developer/Advisor: Bruce Jones</p>
+                 </div>
             </div>
-        </section>
+            <div class="experience-item">
+                <h3>Psychology Studies & Lab Involvement</h3>
+                <p><a href="https://sites.google.com/biola.edu/culture-and-development-lab/home" target="_blank" rel="noopener noreferrer">Cultural and Social Development Lab @ Biola University</a> (2022)</p>
+                 <div class="experience-details">
+                     <p>Studied psychology for a summer and fall semester under cultural developmental psychologist Dr. Oscar Baldelomar. Involved in the Cultural and Social Development Lab. Cross cultural developmental psychology, adolescence and emerging adulthood, identity development, psychology and religion.</p>
+                 </div>
+            </div>
+             </section>
 
         <section id="education">
             <h2>Education</h2>
@@ -289,45 +400,189 @@
             </div>
         </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>Languages: Python, R, HTML, CSS, SQL</li>
-                <li>Statistics: R, Minitab, NumPy, SciPy, Pandas</li>
-                <li>Tools: Figma, WordPress, Canvas, Qualtrics</li>
-                <li>Media: Video/Audio Editing, Poster Design, Canva</li>
-                <li>UX Design, Web Dev, Data Analysis, Research Methods</li>
-                <li>First Aid/CPR Certification - American Red Cross</li>
-                 <li>Language - limited working proficiency in Spanish and Japanese</li>
-                 <li>Learning Management Systems - Canvas, Craft</li>
-                 <li>Microsoft/Google Suite - Word/Docs, Excel/Sheets, Powerpoint/Slides</li>
-                 <li>Research - literature analysis, scholarly writing, formatting, data collection, data analysis, Qualtrics</li>
-                 <li>Social Media Management - business accounts, marketing, music industry, artist management</li>
-                 <li>Web Design - user interfacing, user experience, wireframes, Figma, WordPress, HTML, CSS</li>
-            </ul>
-        </section>
-
-         <section id="portfolio">
+        <section id="portfolio">
              <h2>Portfolio</h2>
-             <ul class="portfolio-list">
-                 <li class="portfolio-item">
-                     <h3>UX Case Study: EdTech Feedback App (Coming Soon)</h3>
-                     <p>Description of the project and technologies used.</p>
-                     <a href="#">Learn More</a>
-                 </li>
-                 <li class="portfolio-item">
-                     <h3>Interactive Research Tool (Prolific-ready)</h3>
-                      <p>Description of the project and technologies used.</p>
-                     <a href="#">Learn More</a>
-                 </li>
-                  <li class="portfolio-item">
-                     <h3>Web Dev Starter Guide for Scientists</h3>
-                      <p>Description of the project and technologies used.</p>
-                     <a href="#">Learn More</a>
-                 </li>
-             </ul>
+             <div class="portfolio-item">
+                 <h3>Scientific Method Learning Tool</h3>
+                 <p>This tool helps learn about the scientific method using dual processing theory - combining visual and verbal learning to enhance understanding and retention.</p>
+                 <a href="https://scientificlearningtool.info/" target="_blank" rel="noopener noreferrer">Learn More</a>
+             </div>
+             <div class="portfolio-item">
+                 <h3>UX Case Study: EdTech Feedback App (Coming Soon)</h3>
+                 <p>Description of the project and technologies used.</p>
+                 <a href="#">Learn More</a>
+             </div>
+              <div class="portfolio-item">
+                 <h3>Interactive Research Tool (Prolific-ready)</h3>
+                  <p>Description of the project and technologies used.</p>
+                 <a href="#">Learn More</a>
+             </div>
+              <div class="portfolio-item">
+                 <h3>Web Dev Starter Guide for Scientists</h3>
+                  <p>Description of the project and technologies used.</p>
+                 <a href="#">Learn More</a>
+             </div>
          </section>
 
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skill-category">
+                <h3>First Aid/CPR Certification</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>American Red Cross</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Language</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Limited working proficiency in Spanish</li>
+                        <li>Limited working proficiency in Japanese</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Learning Management Systems</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Canvas</li>
+                        <li>Craft</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Media Production</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>video editing</li>
+                        <li>photo editing</li>
+                        <li>audio editing</li>
+                        <li>sound design</li>
+                        <li>poster design</li>
+                        <li>Canva</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Microsoft/Google Suite</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Word/Docs</li>
+                        <li>Excel/Sheets</li>
+                        <li>Powerpoint/Slides</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Python</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>R</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Psychology</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>cognitive</li>
+                        <li>educational</li>
+                        <li>cultural</li>
+                        <li>social</li>
+                        <li>developmental</li>
+                        <li>human-computer interaction</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Research</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>literature analysis</li>
+                        <li>scholarly writing</li>
+                        <li>formatting</li>
+                        <li>data collection</li>
+                        <li>data analysis</li>
+                        <li>Qualtrics</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Social Media Management</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>business accounts</li>
+                        <li>marketing</li>
+                        <li>music industry</li>
+                        <li>artist management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Statistics</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Minitab</li>
+                        <li>Excel</li>
+                        <li>Sheets</li>
+                        <li>R</li>
+                        <li>NumPy</li>
+                        <li>SciPy</li>
+                        <li>Pandas</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Web Design</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>user interfacing</li>
+                        <li>user experience</li>
+                        <li>wireframes</li>
+                        <li>Figma</li>
+                        <li>WordPress</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="other-experience">
+            <h2>Other Experience</h2>
+            <div class="experience-item">
+                <h3>Assistant Tennis Professional</h3>
+                <p>El Camino Country Club · Part-time</p>
+                <p>2018 - 2019</p>
+                <p>Oceanside, California, United States</p>
+                 <div class="experience-details">
+                    <p>Managed pro shop, registered members for court reservations and private/semi private lessons, organized weekly events, served as hitting partner, ran kids' summer clinics. Expected to treat all members personably and with a good attitude at all times, providing them with whatever services were immediately applicable.</p>
+                 </div>
+            </div>
+            <div class="experience-item">
+                <h3>Junior High Ministry Leader - Volunteer</h3>
+                <p>North Coast Calvary Chapel</p>
+                <p>Oct 2021 - Present</p>
+                 <div class="experience-details">
+                     <p>I assist the junior high ministry coordinator before, during, and after Sunday service. I also assist in leading Wednesday nights, preside over small group discussions, co-lead worship (music), provide myself as an accessible resource outside of all services as needed, and serve at other ministry-related events such as summer camp.</p>
+                 </div>
+            </div>
+            <div class="experience-item">
+                <h3>Kids' Games Teacher - Volunteer</h3>
+                <p>North Coast Calvary Chapel</p>
+                <p>Jun 2014 - Jul 2019</p>
+                 <div class="experience-details">
+                     <p>I led and taught grade school kids in various subjects and sports such as science, soccer, basketball, etc.</p>
+                 </div>
+            </div>
+        </section>
 
         <section id="contact">
             <h2>Contact Me</h2>
@@ -341,8 +596,10 @@
 
         <footer>
             <p>&copy; 2025 Justin Moran</p>
-            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="thisisjustinmoran" data-version="v1">
-                <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/thisisjustinmoran?trk=profile-badge">Justin Moran</a>
+            <div class="linkedin-badge-container">
+                <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="thisisjustinmoran" data-version="v1">
+                    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/thisisjustinmoran?trk=profile-badge">Justin Moran</a>
+                </div>
             </div>
         </footer>
     </div>
@@ -355,24 +612,32 @@
 
         // Check local storage for theme preference
         const currentTheme = localStorage.getItem('theme');
-        if (currentTheme) {
+
+        // Default to dark mode if no theme is stored
+        if (!currentTheme) {
+            htmlElement.classList.add('dark-mode');
+            themeToggleBtn.textContent = '☀︎'; // Sun icon for dark mode
+            const linkedinBadge = document.querySelector('.LI-profile-badge');
+            if (linkedinBadge) {
+               linkedinBadge.setAttribute('data-theme', 'dark'); // Default badge theme
+            }
+        } else {
+             // Apply stored theme
             htmlElement.classList.add(currentTheme);
             if (currentTheme === 'dark-mode') {
                 themeToggleBtn.textContent = '☀︎'; // Sun icon for dark mode
-                 // Update LinkedIn badge theme if possible (LinkedIn script might re-render)
-                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
+                 const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                     linkedinBadge.setAttribute('data-theme', 'dark');
+                 }
 
             } else {
                  themeToggleBtn.textContent = '☾'; // Moon icon for light mode
-                 // Update LinkedIn badge theme
-                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
-
+                 const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                     linkedinBadge.setAttribute('data-theme', 'light');
+                 }
             }
-        } else {
-             // Default to light mode if no preference is found
-             htmlElement.classList.add('light-mode');
-             themeToggleBtn.textContent = '☾'; // Moon icon for light mode
-             document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light'); // Default badge theme
         }
 
 
@@ -383,7 +648,11 @@
                 themeToggleBtn.textContent = '☀︎'; // Change to sun
                 localStorage.setItem('theme', 'dark-mode');
                 // Attempt to update LinkedIn badge theme (might require re-initialization if badge JS supports it)
-                document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
+                const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                    linkedinBadge.setAttribute('data-theme', 'dark');
+                 }
+
 
             } else {
                 htmlElement.classList.remove('dark-mode');
@@ -391,7 +660,10 @@
                 themeToggleBtn.textContent = '☾'; // Change to moon
                 localStorage.setItem('theme', 'light-mode');
                  // Attempt to update LinkedIn badge theme
-                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
+                 const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                    linkedinBadge.setAttribute('data-theme', 'light');
+                 }
             }
         });
 
@@ -416,6 +688,27 @@
 
          sections.forEach(section => {
              observer.observe(section);
+         });
+
+
+        // Add click functionality for skill categories on touch devices
+        document.addEventListener('DOMContentLoaded', () => {
+             const skillCategories = document.querySelectorAll('.skill-category h3');
+
+             skillCategories.forEach(categoryTitle => {
+                 // Check if it's a touch device or narrow screen (you can adjust the max-width)
+                 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+                 const isMobileView = window.matchMedia("(max-width: 768px)").matches;
+
+
+                 if (isTouchDevice || isMobileView) {
+                     categoryTitle.style.cursor = 'pointer'; // Ensure cursor indicates interactivity
+                     categoryTitle.addEventListener('click', function() {
+                         // Find the parent skill-category and toggle the 'active' class
+                         this.parentElement.classList.toggle('active');
+                     });
+                 }
+             });
          });
 
 
