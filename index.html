@@ -5,168 +5,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Justin Moran - CV</title>
     <style>
+        :root {
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: #333;
+            --header-text: #fff;
+            --section-border: #e0e0e0;
+            --section-title-border: #007bff;
+            --skill-bg: #007bff;
+            --skill-text: #fff;
+            --link-color: #007bff;
+            --link-hover-color: #0056b3;
+            --button-bg: #007bff;
+            --button-text: #fff;
+            --button-hover-bg: #0056b3;
+            --input-border: #ccc;
+            --input-bg: #fff;
+        }
+
+        .dark-mode {
+            --background-color: #1a202c;
+            --text-color: #e2e8f0;
+            --header-bg: #2d3748;
+            --header-text: #fff;
+            --section-border: #4a5568;
+            --section-title-border: #63b3ed;
+            --skill-bg: #4299e1;
+            --skill-text: #fff;
+            --link-color: #63b3ed;
+            --link-hover-color: #3182ce;
+            --button-bg: #4299e1;
+            --button-text: #fff;
+            --button-hover-bg: #3182ce;
+            --input-border: #4a5568;
+            --input-bg: #2d3748;
+        }
+
         body {
             font-family: sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .container {
-            width: 80%;
-            margin: auto;
+            width: 90%;
+            max-width: 960px;
+            margin: 20px auto;
             overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            background: var(--background-color); /* Use background variable */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
+
         header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 40px 20px;
             text-align: center;
-            padding-bottom: 20px;
-            border-bottom: #e0e0e0 1px solid;
         }
+
         header h1 {
             margin: 0;
-            color: #333;
+            font-size: 2.5em;
         }
+
         header p {
             margin: 5px 0;
-            color: #777;
+            font-size: 1.1em;
+            color: #ccc;
         }
+
         .contact-info a {
-            color: #333;
+            color: var(--header-text);
             text-decoration: none;
             margin: 0 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
+
         .contact-info a:hover {
-            color: #007bff;
+            opacity: 1;
+            text-decoration: underline;
         }
+
         section {
-            margin-top: 20px;
-            padding-bottom: 20px;
-            border-bottom: #e0e0e0 1px solid;
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--section-border);
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px); /* Initial state for animation */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+         section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        section:last-child {
+            border-bottom: none;
+        }
+
         section h2 {
-            color: #333;
-            border-bottom: #007bff 2px solid;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--section-title-border);
+            padding-bottom: 10px;
         }
-        .experience-item, .education-item, .skill-item {
-            margin-bottom: 15px;
+
+        .experience-item, .education-item, .portfolio-item {
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid var(--section-title-border);
         }
-        .experience-item h3 {
-            margin: 0;
-            color: #555;
+
+        .experience-item h3, .education-item h3, .portfolio-item h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.3em;
+            color: var(--text-color);
         }
-        .experience-item p {
+         .experience-item p, .education-item p, .portfolio-item p {
             margin: 5px 0;
-            color: #666;
+            color: var(--text-color);
         }
+
+
         .skills-list {
             list-style: none;
             padding: 0;
             display: flex;
             flex-wrap: wrap;
+            gap: 10px;
         }
+
         .skills-list li {
-            background: #007bff;
-            color: #fff;
-            padding: 5px 10px;
-            margin: 5px;
-            border-radius: 5px;
+            background: var(--skill-bg);
+            color: var(--skill-text);
+            padding: 8px 15px;
+            border-radius: 20px;
             font-size: 0.9em;
+            transition: background-color 0.3s ease;
         }
-        .hidden {
-            display: none;
+         .dark-mode .skills-list li {
+             background: var(--skill-bg); /* Ensure dark mode skill bg is applied */
+         }
+
+
+        .portfolio-item a {
+             color: var(--link-color);
+             text-decoration: none;
+             transition: color 0.3s ease;
         }
-        .read-more-btn {
-            background-color: #007bff;
-            color: white;
+        .portfolio-item a:hover {
+             color: var(--link-hover-color);
+             text-decoration: underline;
+        }
+
+        #contact form {
+             display: grid;
+             gap: 15px;
+        }
+        #contact input, #contact textarea {
+             width: 100%;
+             padding: 12px;
+             border: 1px solid var(--input-border);
+             border-radius: 4px;
+             background-color: var(--input-bg);
+             color: var(--text-color);
+             transition: border-color 0.3s ease, background-color 0.3s ease;
+             box-sizing: border-box; /* Include padding in width */
+        }
+        #contact button {
+             background-color: var(--button-bg);
+             color: var(--button-text);
+             padding: 12px 20px;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+             font-size: 1em;
+             transition: background-color 0.3s ease;
+        }
+        #contact button:hover {
+             background-color: var(--button-hover-bg);
+        }
+
+
+        footer {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 30px 20px;
+            text-align: center;
+        }
+         footer .badge-base {
+             margin-top: 20px; /* Space above LinkedIn badge */
+         }
+
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
             border: none;
-            padding: 5px 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
-            border-radius: 3px;
-            font-size: 0.9em;
-            margin-top: 5px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
         }
-        .read-more-btn:hover {
-            background-color: #0056b3;
-        }
+         .theme-toggle:hover {
+             background-color: var(--button-hover-bg);
+         }
+
     </style>
-    <script>
-        function toggleReadMore(id) {
-            var content = document.getElementById(id);
-            var button = content.previousElementSibling; // Assumes button is right before the hidden content
-
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                button.textContent = 'Read Less';
-            } else {
-                content.classList.add('hidden');
-                button.textContent = 'Read More';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add buttons for expandable content if needed (e.g., detailed job descriptions)
-            // This is a placeholder and can be expanded based on specific content you want to hide/show
-            // Example:
-            // var experienceDetails = document.querySelectorAll('.experience-details');
-            // experienceDetails.forEach(function(details, index) {
-            //     if (details.scrollHeight > details.clientHeight) { // Check if content overflows
-            //         var button = document.createElement('button');
-            //         button.textContent = 'Read More';
-            //         button.classList.add('read-more-btn');
-            //         button.onclick = function() { toggleReadMore('exp-details-' + index); };
-            //         details.id = 'exp-details-' + index;
-            //         details.parentNode.insertBefore(button, details);
-            //         details.classList.add('hidden'); // Initially hide the content
-            //     }
-            // });
-        });
-    </script>
 </head>
 <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+        ☀️
+    </button>
+
     <div class="container">
         <header>
             <h1>Justin Moran</h1>
-            <p>Carlsbad, CA</p>
+            <p>Research Scientist | UX Learner | Cognitive Psychology Enthusiast</p>
             <div class="contact-info">
-                <a href="mailto:jmoran@ucsd.edu">jmoran@ucsd.edu</a> / <a href="mailto:justinmoran002@gmail.com">justinmoran002@gmail.com</a>
-                <a href="https://www.linkedin.com/in/thisisjustinmoran/" target="_blank">LinkedIn</a>
+                <a href="mailto:jmoran@ucsd.edu">jmoran@ucsd.edu</a> | <a href="mailto:justinmoran002@gmail.com">justinmoran002@gmail.com</a>
+                <a href="https://www.linkedin.com/in/thisisjustinmoran" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
         </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                I'm a recent UCSD Psychology graduate passionate about applying cognitive, educational, and cultural psychology to improve learning experiences and technologies. I'm currently a Research Scientist in Dr. Eshin Jolly's lab, exploring ways to blend UX design with experimental methods and education technology.
+            </p>
+        </section>
 
         <section id="experience">
             <h2>Experience</h2>
             <div class="experience-item">
-                <h3>Project Lead and Research Scientist</h3>
-                <p>Jolly Laboratory at UCSD (2025 - present)</p>
-                <p>PI: Eshin Jolly, PhD, Cognitive Neuroscience, Assistant Professor of Psychology - UC San Diego</p>
+                <h3>Project Lead & Research Scientist</h3>
+                <p>Jolly Lab @ UCSD (2025–Present)</p>
+                <p>Lead research on online cognition tools with Dr. Eshin Jolly.</p>
             </div>
             <div class="experience-item">
                 <h3>Research Assistant</h3>
-                <p>Learning and Instruction in Multimedia Environments (LIME) Laboratory at UCSD (2024 - present)</p>
-                <p>PI: Dr. Emma Geller, PhD, Cognitive Psychology, Associate Teaching Professor of Psychology - UC San Diego<br>Project Leads: Inez Zung, Alejandro Carranza, Hana Nguyen</p>
+                <p>LIME Lab (2024–Present), PSI Lab (2024), UCSD</p>
             </div>
             <div class="experience-item">
-                <h3>Research Assistant</h3>
-                <p>Pedagogy and Science of Instruction (PSI) Laboratory at UCSD (2024)</p>
-                <p>PI: Dr. Celeste Pilegard, PhD, Psychological and Brain Sciences, Associate Teaching Professor of Psychology- UC San Diego<br>Project Lead: Alan Lopez</p>
-            </div>
-            <div class="experience-item">
-                <h3>Content and Web Developer</h3>
-                <p>Laboratory of Comparative Human Cognition (LCHC) at UCSD (2023 - 2024)</p>
-                <p>Director/Advisor: Dr. Michael Cole, PhD, Psychology and Human Development, Distinguished Professor of Communication - UC San Diego<br>Lead Developer/Advisor: Bruce Jones</p>
+                <h3>Content & Web Developer</h3>
+                <p>Laboratory of Comparative Human Cognition (2023–2024)</p>
             </div>
              <div class="experience-item">
-                <h3>Leader</h3>
-                <p>North Coast Calvary Chapel Junior High Ministry (2021 - present)</p>
-                <p>Assist the junior high ministry before, during, and after Sunday and Wednesday services, lead small group discussions, co-lead worship music, accessible outside of all services as needed and at ministry and church-wide events (e.g. summer camp, fundraisers, community aid).</p>
+                <h3>Junior High Leader</h3>
+                <p>North Coast Calvary Chapel (2021–Present)</p>
             </div>
         </section>
 
@@ -174,28 +278,144 @@
             <h2>Education</h2>
             <div class="education-item">
                 <h3>University of California, San Diego</h3>
-                <p>Undergraduate Studies in Psychology</p>
-                <p>Graduated: Spring 2024</p>
-                <p>GPA: 3.82 - UCSD Provost Honors (2020-2024)</p>
+                <p>B.A. Psychology, 2024 | GPA: 3.82, Provost Honors (2020–2024)</p>
             </div>
         </section>
 
         <section id="skills">
             <h2>Skills</h2>
             <ul class="skills-list">
+                <li>Languages: Python, R, HTML, CSS, SQL</li>
+                <li>Statistics: R, Minitab, NumPy, SciPy, Pandas</li>
+                <li>Tools: Figma, WordPress, Canvas, Qualtrics</li>
+                <li>Media: Video/Audio Editing, Poster Design, Canva</li>
+                <li>UX Design, Web Dev, Data Analysis, Research Methods</li>
                 <li>First Aid/CPR Certification - American Red Cross</li>
-                <li>Language - limited working proficiency in Spanish and Japanese</li>
-                <li>Learning Management Systems - Canvas, Craft</li>
-                <li>Media Production - video editing, photo editing, audio editing, sound design, poster design, Canva</li>
-                <li>Microsoft/Google Suite - Word/Docs, Excel/Sheets, Powerpoint/Slides</li>
-                <li>Programming - Python, HTML, CSS, R, SQL</li>
-                <li>Psychology - cognitive, educational, cultural, social, developmental, human-computer interaction</li>
-                <li>Research - literature analysis, scholarly writing, formatting, data collection, data analysis, Qualtrics</li>
-                <li>Social Media Management - business accounts, marketing, music industry, artist management</li>
-                <li>Statistics - Minitab, Excel, Sheets, R, NumPy, SciPy, Pandas</li>
-                <li>Web Design - user interfacing, user experience, wireframes, Figma, WordPress, HTML, CSS</li>
+                 <li>Language - limited working proficiency in Spanish and Japanese</li>
+                 <li>Learning Management Systems - Canvas, Craft</li>
+                 <li>Microsoft/Google Suite - Word/Docs, Excel/Sheets, Powerpoint/Slides</li>
+                 <li>Research - literature analysis, scholarly writing, formatting, data collection, data analysis, Qualtrics</li>
+                 <li>Social Media Management - business accounts, marketing, music industry, artist management</li>
+                 <li>Web Design - user interfacing, user experience, wireframes, Figma, WordPress, HTML, CSS</li>
             </ul>
         </section>
+
+         <section id="portfolio">
+             <h2>Portfolio</h2>
+             <ul class="portfolio-list">
+                 <li class="portfolio-item">
+                     <h3>UX Case Study: EdTech Feedback App (Coming Soon)</h3>
+                     <p>Description of the project and technologies used.</p>
+                     <a href="#">Learn More</a>
+                 </li>
+                 <li class="portfolio-item">
+                     <h3>Interactive Research Tool (Prolific-ready)</h3>
+                      <p>Description of the project and technologies used.</p>
+                     <a href="#">Learn More</a>
+                 </li>
+                  <li class="portfolio-item">
+                     <h3>Web Dev Starter Guide for Scientists</h3>
+                      <p>Description of the project and technologies used.</p>
+                     <a href="#">Learn More</a>
+                 </li>
+             </ul>
+         </section>
+
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+             <form action="https://formspree.io/f/mqkrapon" method="POST">
+                 <input type="text" name="name" placeholder="Your Name" required>
+                 <input type="email" name="email" placeholder="Your Email" required>
+                 <textarea name="message" placeholder="Your Message" required rows="6"></textarea>
+                 <button type="submit">Send Message</button>
+             </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Justin Moran</p>
+            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="thisisjustinmoran" data-version="v1">
+                <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/thisisjustinmoran?trk=profile-badge">Justin Moran</a>
+            </div>
+        </footer>
     </div>
+
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check local storage for theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            htmlElement.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                themeToggleBtn.textContent = '☀️'; // Sun icon for dark mode
+                 // Update LinkedIn badge theme if possible (LinkedIn script might re-render)
+                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
+
+            } else {
+                 themeToggleBtn.textContent = '🌙'; // Moon icon for light mode
+                 // Update LinkedIn badge theme
+                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
+
+            }
+        } else {
+             // Default to light mode if no preference is found
+             htmlElement.classList.add('light-mode');
+             themeToggleBtn.textContent = '🌙'; // Moon icon for light mode
+             document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light'); // Default badge theme
+        }
+
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('light-mode')) {
+                htmlElement.classList.remove('light-mode');
+                htmlElement.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️'; // Change to sun
+                localStorage.setItem('theme', 'dark-mode');
+                // Attempt to update LinkedIn badge theme (might require re-initialization if badge JS supports it)
+                document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'dark');
+
+            } else {
+                htmlElement.classList.remove('dark-mode');
+                htmlElement.classList.add('light-mode');
+                themeToggleBtn.textContent = '🌙'; // Change to moon
+                localStorage.setItem('theme', 'light-mode');
+                 // Attempt to update LinkedIn badge theme
+                 document.querySelector('.LI-profile-badge').setAttribute('data-theme', 'light');
+            }
+        });
+
+         // Simple Intersection Observer for fade-in animation on scroll
+         const sections = document.querySelectorAll('section');
+
+         const observer = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     entry.target.classList.add('visible');
+                     // Optionally, unobserve after revealing
+                     // observer.unobserve(entry.target);
+                 } else {
+                     // Optional: remove 'visible' class when section is out of view
+                      // entry.target.classList.remove('visible');
+                 }
+             });
+         }, {
+             threshold: 0.2, // Trigger when 20% of the section is visible
+              rootMargin: "0px 0px -50px 0px" // Adjust the viewport bottom margin
+         });
+
+         sections.forEach(section => {
+             observer.observe(section);
+         });
+
+
+         // Basic Contact Form Submission (optional, Formspree handles actual sending)
+         // If you were handling submission yourself with JS/fetch, this is where you'd do it.
+         // With Formspree 'method="POST"' and the action URL in the form tag is sufficient.
+
+    </script>
 </body>
 </html>
