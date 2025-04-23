@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - CV Template</title>
+    <style>
+        /*
+        This CSS provides the styling for the interactive CV template.
+        Feel free to modify the colors, fonts, and layout to match your personal brand.
+
+        Key Sections:
+        - :root and .dark-mode: Define color variables for easy theme switching.
+        - body: Basic page styling.
+        - .container: Centers and styles the main content area.
+        - header: Styles the top section with name and contact info.
+        - .contact-info a: Styles the links in the header.
+        - section: Basic styling for content sections (About, Experience, etc.).
+        - section.visible: Controls the fade-in animation on scroll.
+        - section h2: Styles the section titles.
+        - .experience-item, .education-item, .portfolio-item: Base styling for list items.
+        - .experience-details: Styles the collapsable/hoverable details sections.
+        - .experience-item:hover .experience-details: Makes details visible on hover.
+        - .skill-category: Styles the skill category containers.
+        - .skill-category h3: Styles the skill category titles (smaller font, cursor).
+        - .skill-list-details: Styles the container for the skill bubbles (hidden by default).
+        - .skill-category h3:hover + .skill-list-details: Makes skill bubbles visible on hover of the title.
+        - .skill-category.active .skill-list-details: Makes skill bubbles visible on click (for mobile).
+        - .skill-list-details ul: Styles the list containing skill bubbles (flexbox).
+        - .skill-list-details li: Styles the individual skill bubbles.
+        - .portfolio-item: Styles individual portfolio entries.
+        - #contact form: Styles the contact form layout.
+        - #contact input, #contact textarea: Styles form input fields.
+        - #contact button: Styles the form submit button.
+        - footer: Styles the footer section.
+        - .linkedin-badge-container: Centers the LinkedIn badge.
+        - .theme-toggle: Styles the fixed theme toggle button.
+
+        Adjust values like max-width, padding, margins, font sizes, and colors
+        to customize the look and feel.
+        */
+
+        :root {
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: #333;
+            --header-text: #fff;
+            --section-border: #e0e0e0;
+            --section-title-border: #007bff;
+            --skill-bg: #007bff;
+            --skill-text: #fff;
+            --link-color: #007bff;
+            --link-hover-color: #0056b3;
+            --button-bg: #007bff;
+            --button-text: #fff;
+            --button-hover-bg: #0056b3;
+            --input-border: #ccc;
+            --input-bg: #fff;
+        }
+
+        .dark-mode {
+            --background-color: #1a202c;
+            --text-color: #e2e8f0;
+            --header-bg: #2d3748;
+            --header-text: #fff;
+            --section-border: #4a5568;
+            --section-title-border: #63b3ed;
+            --skill-bg: #4299e1;
+            --skill-text: #fff;
+            --link-color: #63b3ed;
+            --link-hover-color: #3182ce;
+            --button-bg: #4299e1;
+            --button-text: #fff;
+            --button-hover-bg: #3182ce;
+            --input-border: #4a5568;
+            --input-bg: #2d3748;
+        }
+
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 960px;
+            margin: 20px auto;
+            overflow: hidden;
+            background: var(--background-color); /* Use background variable */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .contact-info a {
+            color: var(--header-text);
+            text-decoration: none;
+            margin: 0 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--section-border);
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px); /* Initial state for animation */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+         section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section h2 {
+            color: var(--text-color);
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--section-title-border);
+            padding-bottom: 10px;
+        }
+
+        .experience-item, .education-item, .portfolio-item {
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid var(--section-title-border);
+        }
+
+        .experience-item h3, .education-item h3, .portfolio-item h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.3em;
+            color: var(--text-color);
+        }
+         .experience-item p, .education-item p, .portfolio-item p {
+            margin: 5px 0;
+            color: var(--text-color);
+        }
+        /* Style for links within experience items */
+        .experience-item a {
+             color: var(--text-color); /* Inherit text color */
+             text-decoration: none;
+             transition: color 0.3s ease;
+        }
+        .experience-item a:hover {
+             color: var(--link-hover-color); /* Use link hover color */
+             text-decoration: underline;
+        }
+
+        /* Styling for the experience details dropdown */
+        .experience-details {
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid var(--section-border);
+            overflow: hidden; /* Hide overflow content */
+            max-height: 0; /* Start hidden */
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        /* Show experience details on hover of the parent experience-item */
+        .experience-item:hover .experience-details {
+            max-height: 500px; /* Adjust as needed to fit content */
+            opacity: 1;
+        }
+
+        /* Remove button styling as it's no longer used for hover */
+        .toggle-details-button {
+           display: none; /* Hide the button */
+        }
+
+
+        /* Styling for skill categories and list */
+        .skill-category {
+            margin-bottom: 15px;
+            border-left: 3px solid var(--section-title-border); /* Match experience item styling */
+            padding-left: 15px;
+        }
+
+        .skill-category h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em; /* Smaller font size for category title */
+            color: var(--text-color);
+            cursor: pointer; /* Indicate it's interactive */
+             /* Add a small arrow or indicator if desired */
+             /* content: '▼'; */
+             /* margin-left: 5px; */
+        }
+
+        .skill-list-details {
+            margin-top: 10px;
+            padding-left: 0; /* Remove left padding here */
+            border-left: none; /* Remove border here */
+            overflow: hidden;
+            max-height: 0; /* Start hidden */
+            opacity: 0;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        /* Show skill details on hover of the H3 (less sensitive) */
+        .skill-category h3:hover + .skill-list-details {
+             max-height: 500px; /* Adjust as needed */
+             opacity: 1;
+        }
+
+         /* Show skill details when the skill-category is clicked (for touch/mobile) */
+         .skill-category.active .skill-list-details {
+             max-height: 500px; /* Adjust as needed */
+             opacity: 1;
+         }
+
+
+        .skill-list-details ul {
+            list-style: none; /* Remove default bullets */
+            padding: 0;
+            margin: 0;
+            display: flex; /* Use flexbox for bubbles */
+            flex-wrap: wrap;
+            gap: 8px; /* Space between bubbles */
+        }
+
+        .skill-list-details li {
+             background: var(--skill-bg); /* Apply bubble background */
+             color: var(--skill-text); /* Apply bubble text color */
+             padding: 5px 10px; /* Padding inside bubbles */
+             border-radius: 15px; /* Rounded corners for bubbles */
+             font-size: 0.9em; /* Smaller font size for bubbles */
+             transition: background-color 0.3s ease;
+             flex-shrink: 0; /* Prevent shrinking */
+        }
+         .dark-mode .skill-list-details li {
+             background: var(--skill-bg); /* Ensure dark mode skill bg is applied */
+         }
+
+
+        .portfolio-item {
+             margin-bottom: 25px;
+             padding-left: 0; /* Remove left padding */
+             border-left: none; /* Remove border */
+        }
+
+        .portfolio-item h3 {
+             margin: 0 0 5px 0;
+             font-size: 1.3em;
+             color: var(--text-color);
+        }
+         .portfolio-item p {
+             margin: 5px 0;
+             color: var(--text-color);
+         }
+         .portfolio-item a {
+              color: var(--link-color);
+              text-decoration: none;
+              transition: color 0.3s ease;
+         }
+         .portfolio-item a:hover {
+              color: var(--link-hover-color);
+              text-decoration: underline;
+         }
+
+
+        #contact form {
+             display: grid;
+             gap: 15px;
+        }
+        #contact input, #contact textarea {
+             width: 100%;
+             padding: 12px;
+             border: 1px solid var(--input-border);
+             border-radius: 4px;
+             background-color: var(--input-bg);
+             color: var(--text-color);
+             transition: border-color 0.3s ease, background-color 0.3s ease;
+             box-sizing: border-box; /* Include padding in width */
+        }
+        #contact button {
+             background-color: var(--button-bg);
+             color: var(--button-text);
+             padding: 12px 20px;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+             font-size: 1em;
+             transition: background-color 0.3s ease;
+        }
+        #contact button:hover {
+             background-color: var(--button-hover-bg);
+        }
+
+
+        footer {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9em; /* Smaller font for footer text */
+        }
+         footer p {
+             margin: 5px 0;
+         }
+         footer a {
+             color: var(--header-text);
+             text-decoration: none;
+             margin: 0 5px;
+             opacity: 0.8;
+             transition: opacity 0.3s ease;
+         }
+         footer a:hover {
+             opacity: 1;
+             text-decoration: underline;
+         }
+
+        /* CSS to center the LinkedIn badge container */
+         footer .linkedin-badge-container {
+             display: flex;
+             justify-content: center;
+             margin-top: 20px; /* Space above LinkedIn badge */
+         }
+
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+         .theme-toggle:hover {
+             background-color: var(--button-hover-bg);
+         }
+
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
+        ☀︎
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>[Your Name]</h1>
+            <p>[Your Title/Tagline]</p>
+            <div class="contact-info">
+                <a href="mailto:your.email@example.com">your.email@example.com</a> |
+                <a href="https://www.linkedin.com/in/your-linkedin-vanity-name" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                <a href="https://github.com/your-github-username/" target="_blank" rel="noopener noreferrer">GitHub</a>
+                 </div>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                [Write a brief summary about yourself, your interests, and career goals.
+                Highlight your passion and what drives you.]
+            </p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>[Your Role/Position]</h3>
+                <p>[Company/Organization Name] <a href="[Link to Company/Lab Website]" target="_blank" rel="noopener noreferrer">[Optional: @ Location/Affiliation]</a> ([Dates of Employment])</p>
+                 <div class="experience-details">
+                    <p>[Describe your key responsibilities, projects, and achievements here.]</p>
+                    <p>[Optional: Add PI/Director/Advisor information if relevant.]</p>
+                 </div>
+            </div>
+             <div class="experience-item">
+                <h3>Sample Research Assistant</h3>
+                <p>Sample Lab @ University Name (Year–Year)</p>
+                 <div class="experience-details">
+                    <p>Assisted with data collection and analysis for a research project on [Topic].</p>
+                    <p>PI: Dr. Jane Doe, PhD</p>
+                 </div>
+            </div>
+             </section>
+
+        <section id="education">
+            <h2>Education</h2>
+             <div class="education-item">
+                <h3>[Degree Name]</h3>
+                <p>[Institution Name], [Graduation Year] | [Optional: GPA, Honors, etc.]</p>
+            </div>
+             <div class="education-item">
+                <h3>B.A. Sample Major</h3>
+                <p>Sample University, 20XX | GPA: X.XX</p>
+            </div>
+        </section>
+
+        <section id="portfolio">
+             <h2>Portfolio</h2>
+             <div class="portfolio-item">
+                 <h3>[Project Title]</h3>
+                 <p>[Brief description of the project and technologies used.]</p>
+                 <a href="[Link to Project/Case Study]" target="_blank" rel="noopener noreferrer">Learn More</a>
+             </div>
+              <div class="portfolio-item">
+                 <h3>Sample Web Project</h3>
+                  <p>A description of a cool web project.</p>
+                 <a href="#">Learn More</a>
+             </div>
+         </section>
+
+
+        <section id="skills">
+            <h2>Skills</h2>
+             <div class="skill-category">
+                <h3>[Skill Category Title]</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>[Individual Skill 1]</li>
+                        <li>[Individual Skill 2]</li>
+                        </ul>
+                </div>
+            </div>
+             <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                    </ul>
+                </div>
+            </div>
+             <div class="skill-category">
+                <h3>Software & Tools</h3>
+                <div class="skill-list-details">
+                    <ul>
+                        <li>Figma</li>
+                        <li>Git</li>
+                        <li>VS Code</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="other-experience">
+            <h2>Other Experience</h2>
+             <div class="experience-item">
+                <h3>[Your Role/Position]</h3>
+                <p>[Company/Organization Name] ([Dates of Involvement])</p>
+                <p>[Location, if applicable]</p>
+                 <div class="experience-details">
+                    <p>[Describe your responsibilities and contributions.]</p>
+                 </div>
+            </div>
+             <div class="experience-item">
+                <h3>Sample Volunteer Role</h3>
+                <p>Sample Organization (Year–Year)</p>
+                <p>Sample City, State</p>
+                 <div class="experience-details">
+                    <p>Helped with [Task].</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+             <form action="https://formspree.io/f/your-formspree-endpoint" method="POST">
+                 <input type="text" name="name" placeholder="Your Name" required>
+                 <input type="email" name="email" placeholder="Your Email" required>
+                 <textarea name="message" placeholder="Your Message" required rows="6"></textarea>
+                 <button type="submit">Send Message</button>
+             </form>
+             </section>
+
+        <footer>
+            <p>&copy; 20XX Your Name.</p>
+            <div class="linkedin-badge-container">
+                <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="your-linkedin-vanity-name" data-version="v1">
+                    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/your-linkedin-vanity-name">Your Name</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+    <script>
+        /*
+        This script handles the theme toggle functionality and the scroll animations.
+        It also includes logic for making skill categories clickable on touch devices.
+        You can keep it as is or modify it.
+        */
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check local storage for theme preference
+        const currentTheme = localStorage.getItem('theme');
+
+        // Default to dark mode if no theme is stored
+        // You can change 'dark-mode' to 'light-mode' here to default to light mode
+        if (!currentTheme) {
+            htmlElement.classList.add('dark-mode');
+            themeToggleBtn.textContent = '☀︎'; // Sun icon for dark mode
+            // Attempt to update LinkedIn badge theme if possible
+            const linkedinBadge = document.querySelector('.LI-profile-badge');
+            if (linkedinBadge) {
+               linkedinBadge.setAttribute('data-theme', 'dark'); // Default badge theme
+            }
+        } else {
+             // Apply stored theme
+            htmlElement.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                themeToggleBtn.textContent = '☀︎'; // Sun icon for dark mode
+                 const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                     linkedinBadge.setAttribute('data-theme', 'dark');
+                 }
+
+            } else {
+                 htmlElement.classList.remove('dark-mode');
+                 htmlElement.classList.add('light-mode');
+                 themeToggleBtn.textContent = '☾'; // Change to moon
+                 const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                     linkedinBadge.setAttribute('data-theme', 'light');
+                 }
+            }
+        }
+
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('light-mode')) {
+                htmlElement.classList.remove('light-mode');
+                htmlElement.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀︎'; // Change to sun
+                localStorage.setItem('theme', 'dark-mode');
+                // Attempt to update LinkedIn badge theme (might require re-initialization if badge JS supports it)
+                const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                    linkedinBadge.setAttribute('data-theme', 'dark');
+                 }
+
+
+            } else {
+                htmlElement.classList.remove('dark-mode');
+                htmlElement.classList.add('light-mode');
+                themeToggleBtn.textContent = '☾'; // Change to moon
+                localStorage.setItem('theme', 'light-mode');
+                 // Attempt to update LinkedIn badge theme
+                 const linkedinBadge = document.querySelector('.LI-profile-badge');
+                 if (linkedinBadge) {
+                     linkedinBadge.setAttribute('data-theme', 'light');
+                 }
+            }
+        });
+
+         // Simple Intersection Observer for fade-in animation on scroll
+         const sections = document.querySelectorAll('section');
+
+         const observer = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     entry.target.classList.add('visible');
+                     // Optionally, unobserve after revealing
+                     // observer.unobserve(entry.target);
+                 } else {
+                     // Optional: remove 'visible' class when section is out of view
+                      // entry.target.classList.remove('visible');
+                 }
+             });
+         }, {
+             threshold: 0.2, // Trigger when 20% of the section is visible
+              rootMargin: "0px 0px -50px 0px" // Adjust the viewport bottom margin
+         });
+
+         sections.forEach(section => {
+             observer.observe(section);
+         });
+
+
+        // Add click functionality for skill categories on touch devices
+        document.addEventListener('DOMContentLoaded', () => {
+             const skillCategories = document.querySelectorAll('.skill-category h3');
+
+             skillCategories.forEach(categoryTitle => {
+                 // Check if it's a touch device or narrow screen (you can adjust the max-width)
+                 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+                 const isMobileView = window.matchMedia("(max-width: 768px)").matches;
+
+
+                 if (isTouchDevice || isMobileView) {
+                     categoryTitle.style.cursor = 'pointer'; // Ensure cursor indicates interactivity
+                     categoryTitle.addEventListener('click', function() {
+                         // Find the parent skill-category and toggle the 'active' class
+                         this.parentElement.classList.toggle('active');
+                     });
+                 }
+             });
+         });
+
+
+         // Basic Contact Form Submission (optional, Formspree handles actual sending)
+         // If you were handling submission yourself with JS/fetch, this is where you'd do it.
+         // With Formspree 'method="POST"' and the action URL in the form tag is sufficient.
+
+    </script>
+</body>
+</html>
