@@ -21,6 +21,7 @@
             --button-hover-bg: #0056b3;
             --input-border: #ccc;
             --input-bg: #fff;
+            --error-color: #dc3545; /* Color for validation errors */
         }
 
         .dark-mode {
@@ -39,6 +40,7 @@
             --button-hover-bg: #3182ce;
             --input-border: #4a5568;
             --input-bg: #2d3748;
+            --error-color: #f8d7da; /* Lighter error color for dark mode */
         }
 
         body {
@@ -283,6 +285,36 @@
              background-color: var(--button-hover-bg);
         }
 
+        .form-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+         .dark-mode .form-message.success {
+             background-color: #28a745;
+             color: #fff;
+             border-color: #28a745;
+         }
+          .dark-mode .form-message.error {
+             background-color: #dc3545;
+             color: #fff;
+             border-color: #dc3545;
+         }
+
 
         footer {
             background-color: var(--header-bg);
@@ -419,7 +451,7 @@
         <section id="portfolio">
              <h2>Portfolio</h2>
              <div class="portfolio-item">
-                 <h3>Scientific Learning Tool</h3>
+                 <h3>Scientific Method Learning Tool</h3>
                  <p>This open source tool helps learn about the scientific method, research methods in psychology, and basic cognitive psychology. The tool uses dual processing theory - combining visual and verbal learning to enhance understanding and retention. Built with HTML and CSS with a Python backend.</p>
                  <a href="https://scientificlearningtool.info/" target="_blank" rel="noopener noreferrer">Learn More</a>
              </div>
@@ -592,11 +624,12 @@
 
         <section id="contact">
             <h2>Contact Me</h2>
-             <form action="https://formspree.io/f/xldbenol" method="POST">
-                 <input type="text" name="name" placeholder="Your Name" required>
-                 <input type="email" name="email" placeholder="Your Email" required>
-                 <textarea name="message" placeholder="Your Message" required rows="6"></textarea>
+             <form id="contact-form" action="https://formspree.io/f/xldbenol" method="POST">
+                 <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+                 <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+                 <textarea name="message" placeholder="Your Message" required rows="6" aria-label="Your Message"></textarea>
                  <button type="submit">Send Message</button>
+                 <div id="form-status" class="form-message" aria-live="polite"></div>
              </form>
         </section>
 
@@ -719,10 +752,69 @@
              });
          });
 
+         // Client-Side Form Validation and Submission Handling
+         const contactForm = document.getElementById('contact-form');
+         const formStatus = document.getElementById('form-status');
 
-         // Basic Contact Form Submission (optional, Formspree handles actual sending)
-         // If you were handling submission yourself with JS/fetch, this is where you'd do it.
-         // With Formspree 'method="POST"' and the action URL in the form tag is sufficient.
+         contactForm.addEventListener('submit', async function(event) {
+             event.preventDefault(); // Prevent default form submission
+
+             formStatus.textContent = ''; // Clear previous messages
+             formStatus.className = 'form-message'; // Reset message class
+
+             const nameInput = contactForm.elements['name'];
+             const emailInput = contactForm.elements['email'];
+             const messageInput = contactForm.elements['message'];
+
+             // Basic Validation Checks
+             if (nameInput.value.trim() === '' || emailInput.value.trim() === '' || messageInput.value.trim() === '') {
+                 displayFormStatus('Please fill out all required fields.', 'error');
+                 return;
+             }
+
+             // Simple Email Format Validation
+             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             if (!emailRegex.test(emailInput.value.trim())) {
+                 displayFormStatus('Please enter a valid email address.', 'error');
+                 return;
+             }
+
+             // If validation passes, submit the form using fetch
+             const formData = new FormData(contactForm);
+
+             try {
+                 const response = await fetch(contactForm.action, {
+                     method: 'POST',
+                     body: formData,
+                     headers: {
+                         'Accept': 'application/json'
+                     }
+                 });
+
+                 if (response.ok) {
+                     displayFormStatus('Thank you! Your message has been sent.', 'success');
+                     contactForm.reset(); // Clear the form
+                 } else {
+                     // Handle server errors or Formspree issues
+                     const data = await response.json();
+                     if (data.errors) {
+                         displayFormStatus(data.errors.map(error => error.message).join(', '), 'error');
+                     } else {
+                         displayFormStatus('Oops! There was a problem sending your message.', 'error');
+                     }
+                 }
+             } catch (error) {
+                 // Handle network errors
+                 displayFormStatus('Oops! There was a network error.', 'error');
+                 console.error('Network error:', error);
+             }
+         });
+
+         function displayFormStatus(message, type) {
+             formStatus.textContent = message;
+             formStatus.classList.add(type);
+         }
+
 
     </script>
 </body>
