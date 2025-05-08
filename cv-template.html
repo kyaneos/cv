@@ -90,7 +90,22 @@
             color: var(--text-color);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
+        .template-banner {
+            background-color: var(--banner-bg);
+            color: var(--banner-text);
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 1em;
+            margin-bottom: 20px; /* Space below the banner */
+        }
+         .template-banner a {
+             color: var(--banner-text); /* Link color same as text */
+             text-decoration: underline;
+             font-weight: bold;
+         }
+         .template-banner a:hover {
+             text-decoration: none;
+         }
         .container {
             width: 90%;
             max-width: 960px;
