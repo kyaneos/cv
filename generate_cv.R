@@ -98,6 +98,10 @@ rmarkdown::render(
 # Clean up old files after generating new ones
 if (create_dated) cleanup_old_files()
 
+# Update GitHub Pages index.html with latest CV
+cat("📤 Updating GitHub Pages (index.html)...\n")
+file.copy(file.path("generated", "latest.html"), "index.html", overwrite = TRUE)
+
 cat("✅ HTML versions generated successfully!\n")
 
 # List recent CV files
