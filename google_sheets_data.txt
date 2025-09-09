@@ -1,0 +1,44 @@
+SHEET 1: "entries" - Copy this entire block and paste into Google Sheets:
+
+section	title	institution	location	start	end	description	in_resume
+currently	Research Scientist	Sciminds @ UCSD	La Jolla CA	2025	Present	Lead projects on online cognition tools, including developing video games as a platform for social cognition research. PI: Eshin Jolly, PhD, Cognitive Neuroscience, Assistant Professor of Psychology - UC San Diego	TRUE
+currently	Research Assistant	LIME Lab @ UCSD	La Jolla CA	2024	Present	Working with graduate students and honors students on multiple research projects investigating preconceptions and learning, judgements of learning during restudy vs. retrieval practice, dual theory of processing in simulated environments, and subsumptive learning within STEM contexts. PI: Dr. Emma Geller, PhD, Cognitive Psychology, Associate Teaching Professor of Psychology - UC San Diego. Project Leads: Inez Zung, Alejandro Carranza, Hana Nguyen	TRUE
+education	Bachelor of Arts in Psychology	University of California San Diego	La Jolla CA	2020	2024	GPA: 3.82, Provost Honors	TRUE
+education	Research Assistant	PSI Lab @ UCSD	La Jolla CA	2024	2024	Research on how body language and gestures indicating cause and effect impact retention of causal science lessons. PI: Dr. Celeste Pilegard, PhD, Psychological and Brain Sciences, Associate Teaching Professor of Psychology - UC San Diego. Project Lead: Alan Lopez	TRUE
+education	Content & Web Developer	Laboratory of Comparative Human Cognition @ UCSD	La Jolla CA	2023	2024	Developed, maintained, and wrote content for laboratory website. Engaged in literature reviews, helped organize information for cultural psychology book, attended seminars with leading professionals, and created graphics. Director/Advisor: Dr. Michael Cole, PhD, Psychology and Human Development, Distinguished Professor of Communication - UC San Diego. Lead Developer/Advisor: Bruce Jones	TRUE
+education	Psychology Studies & Lab Involvement	Cultural and Social Development Lab @ Biola University	La Mirada CA	2022	2022	Studied psychology and participated in research on cross-cultural developmental psychology, adolescence and emerging adulthood, identity development, and psychology and religion.	TRUE
+software	ResearchMatch	Open Scientific Software	GitHub	2024	Present	Web platform connecting academic researchers with content creators to make scientific research more accessible. Features intelligent matching algorithms, collaborative messaging, analytics dashboards, and responsive design. Built with Svelte 5, Vite 7, Supabase, and GitHub Actions.	TRUE
+software	Scientific Method Learning Tool	Open Scientific Software	Website	2024	Present	Open source educational tool utilizing dual processing theory to enhance learning about research methods and cognitive psychology. Combines visual and verbal learning approaches for improved understanding and retention.	TRUE
+software	DataCollect Pro	Open Scientific Software	GitHub	2024	Present	Online data collection platform for researchers featuring survey management, user profiles, data visualization, and accessibility-compliant design. Built with Svelte 5, SvelteKit 2.0, and comprehensive icon system.	TRUE
+software	Pleiades Peripheral Vision Simulation	Open Scientific Software	GitHub	2024	Present	Web simulation visualizing the Pleiades star cluster and the peripheral vision effect. Demonstrates how faint objects can appear clearer in peripheral vision using interactive mouse/touch input. Includes original background music composition.	TRUE
+
+================================================================================
+
+SHEET 2: "language_skills" - Copy this entire block and paste into Google Sheets:
+
+skill	level	details
+Python	4	Data analysis, web development
+R	4	Statistical analysis, data visualization
+JavaScript	4	Web development, interactive applications
+HTML/CSS	5	Web design and development
+Svelte	4	Modern web framework development
+Statistical Analysis	4	Research methods, data interpretation
+UX/UI Design	3	User experience and interface design
+Research Methods	5	Experimental design, literature review
+
+================================================================================
+
+SHEET 3: "text_blocks" - Copy this entire block and paste into Google Sheets:
+
+loc	text
+intro	Recent UCSD Psychology graduate passionate about applying cognitive, educational, and cultural psychology to improve learning experiences and technologies. Currently a Research Scientist in Dr. Eshin Jolly's Sciminds lab at UCSD, exploring ways to blend UX and web design with experimental methods and education technology, and a Research Assistant in the LIME lab, investigating cognition and learning across different mediums.
+
+================================================================================
+
+SHEET 4: "contact_info" - Copy this entire block and paste into Google Sheets:
+
+loc	icon	contact
+main	fas fa-envelope	jmoran@ucsd.edu
+main	fas fa-envelope	justinmoran002@gmail.com
+main	fab fa-linkedin	linkedin.com/in/thisisjustinmoran
+main	fab fa-github	github.com/kyaneos
