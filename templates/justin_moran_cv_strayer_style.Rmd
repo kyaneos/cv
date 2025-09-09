@@ -7,7 +7,7 @@ params:
     value: true
 output:
   pagedown::html_resume:
-    css: ['../datadrivencv/dd_cv.css', 'resume']
+    css: ['../datadrivencv/dd_cv.css', 'resume', '../custom.css']
     self_contained: true
 ---
 
@@ -28,6 +28,7 @@ CV <- create_CV_object(
 ```
 
 
+
 ```{r}
 # When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
 if(params$pdf_mode) {
@@ -44,27 +45,23 @@ if(params$pdf_mode) {
 Aside
 ================================================================================
 
-```{r}
-# Cool network logo placeholder - would show interactive network of positions
-# For now, we'll use a text-based logo
-cat("
-<div style='text-align: center; padding: 20px; font-size: 1.2em; color: #007bff;'>
-  <strong>JUSTIN MORAN</strong><br>
-  <span style='font-size: 0.8em; color: #666;'>Research Scientist • Cognitive Psychology</span>
-</div>
-")
-```
-
-
-```{r}
-# Removed placeholder text - no longer needed
-```
-
 Contact {#contact}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV |> print_contact_info()
+```
+
+
+
+```{r}
+# Empty positioning block 1
+```
+
+
+
+```{r}
+# Empty positioning block 2 - moves Technical Skills down a smidge
 ```
 
 
@@ -81,7 +78,7 @@ CV |> print_skill_bars()
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-Made with [**datadrivencv**](https://nickstrayer.me/datadrivencv). 
+Made with [**datadrivencv**](https://github.com/nstrayer/datadrivencv/). 
 
 The source code is available on [GitHub](https://github.com/kyaneos/cv).
 

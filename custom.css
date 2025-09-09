@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Average&display=swap');
+
+* {
+  font-family: 'Average', serif !important;
+}
+
+/* Keep FontAwesome icons with their original font */
+.fa, .fas, .far, .fab, i[class*='fa'] {
+  font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands' !important;
+}
