@@ -118,8 +118,6 @@ Education and Training {data-icon=graduation-cap data-concise=true}
 CV <- CV |> print_section('education')
 ```
 
-
-
 Manuscripts {data-icon=book}
 --------------------------------------------------------------------------------
 ::: aside
@@ -131,67 +129,57 @@ if(params$pdf_mode){
 }
 ```
 :::
-
 ```{r}
-# Check if manuscripts section exists in data, otherwise show hardcoded entry
+# Custom manuscripts section grouped by year
 manuscript_data <- dplyr::filter(CV$entries_data, section == 'manuscripts')
 if (nrow(manuscript_data) > 0) {
-  # Group manuscripts by year and create timeline structure
+  # Extract year for grouping
   manuscript_data <- manuscript_data |>
     dplyr::mutate(
-      # Extract year from end date, or use "in prep" if no date
       year = ifelse(is.na(end) | end == "N/A", "in prep", end)
     ) |>
-    dplyr::arrange(desc(year)) # Sort with most recent first
+    dplyr::arrange(desc(year))
   
-  # Get unique years to avoid duplicates
+  # Get unique years
   unique_years <- unique(manuscript_data$year)
   
   for(yr in unique_years) {
     year_manuscripts <- manuscript_data |> dplyr::filter(year == yr)
     
-    # Create timeline entry for this year
+    # Create one timeline entry per year
     cat("
-### ", yr, "
+### 
 
 N/A
 
 N/A
 
-N/A
+", yr, "
 
 ")
     
-    # Add all manuscripts for this year as regular text
+    # Add all manuscripts for this year
     for(i in 1:nrow(year_manuscripts)) {
-      cat(year_manuscripts$title[i], "\n")
+      cat(year_manuscripts$title[i])
       
-      # Add description if it exists and is not empty/NA
+      # Add description if it exists
       if(!is.na(year_manuscripts$description_bullets[i]) && 
          year_manuscripts$description_bullets[i] != "" && 
          year_manuscripts$description_bullets[i] != "N/A") {
-        cat("\n*", year_manuscripts$description_bullets[i], "*\n")
+        cat("
+
+*", year_manuscripts$description_bullets[i], "*")
       }
       
-      cat("\n")
-    }
-  }
-} else {
-  # Hardcoded manuscript with timeline structure
-  cat("
-### 2025
-
-N/A
-
-N/A
-
-N/A
-
-Moran, J., Jolly, E. (in prep). Transmission and Transformation of Social Reputations in Serial Reproduction.
-
-*Research on how social reputations change through transmission chains*
+      if(i < nrow(year_manuscripts)) cat("
 
 ")
+    }
+    
+    cat("
+
+")
+  }
 }
 ```
 
@@ -209,13 +197,13 @@ if(params$pdf_mode){
 :::
 
 ```{r}
-# Custom template for software section (no location)
+# Custom template for software section (with location for links)
 software_template <- "
 ### {title}
 
 {institution}
 
-N/A
+{loc}
 
 {timeline}
 
