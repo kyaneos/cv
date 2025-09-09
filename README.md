@@ -1,6 +1,24 @@
-# Justin Moran's Data-Driven CV
+# Justin Moran's CV Repository
 
-A modern, maintainable CV system built with R and datadrivencv, inspired by Nick Strayer's design.
+This repository contains two CV systems:
+
+## 📄 Static CV (Main) - [kyaneos.github.io/cv](https://kyaneos.github.io/cv/)
+A professional data-driven CV built with R and datadrivencv, inspired by Nick Strayer's design.
+
+## 🚀 Interactive CV - [kyaneos.github.io/cv/interactive](https://kyaneos.github.io/cv/interactive/)
+A modern interactive CV website with dark/light mode, animations, and dynamic content.
+
+## 📋 Table of Contents
+- [📄 Static CV (Data-Driven)](#-static-cv-data-driven) - R-based CV generation with Google Sheets
+- [🚀 Interactive CV](#-interactive-cv-1) - Modern web CV with animations
+- [🚀 Deployment Options](#-deployment-options) - GitHub Pages & hosting info
+- [📚 References & Attribution](#-references--attribution) - Credits and inspiration
+
+---
+
+# 📄 Static CV (Data-Driven)
+
+The main CV system using R and datadrivencv for professional, maintainable CV generation.
 
 ## 🚀 Quick Start
 
@@ -14,7 +32,8 @@ Rscript scripts/render_strayer_style_cv.R
 ```
 
 ### 2. View Your CV
-- **Web version**: Open `generated/latest.html` in your browser
+- **Live version**: [kyaneos.github.io/cv](https://kyaneos.github.io/cv/)
+- **Local web version**: Open `generated/latest.html` in your browser
 - **PDF version**: Print the HTML to PDF using your browser
 - **Dated versions**: Files are saved as `cv_YYYY-MM-DD.html` in `generated/`
 
@@ -383,17 +402,43 @@ This CV system builds upon the excellent work by **Nick Strayer**:
 - Clean academic styling
 - Data-driven content management from Google Sheets
 
+---
+
+# 🚀 Interactive CV
+
+The interactive CV is located in the `interactive/` directory and provides:
+
+## ✨ Features
+- **Dark/Light mode toggle** with smooth transitions
+- **Scroll animations** - sections fade in as you scroll
+- **Interactive skills** - click categories to filter skills
+- **Responsive design** - works on desktop and mobile
+- **Modern styling** - clean, professional appearance
+
+## 🔧 Customization
+To modify the interactive CV:
+
+1. **Edit content**: Modify `interactive/index.html` directly
+2. **Styling**: Update the CSS in the `<style>` section
+3. **Functionality**: Modify JavaScript in the `<script>` section
+4. **Template**: Use `interactive/cv-template.html` as a starting template
+
+## 🌐 Live URLs
+- **Main**: [kyaneos.github.io/cv/interactive](https://kyaneos.github.io/cv/interactive/)
+- **Template**: [kyaneos.github.io/cv/interactive/cv-template.html](https://kyaneos.github.io/cv/interactive/cv-template.html)
+
+---
+
 ## 🚀 Deployment Options
 
-### GitHub Pages
-1. Push HTML files to GitHub repository
-2. Enable GitHub Pages in repository settings
-3. CV will be available at `https://username.github.io/repository-name/`
+### GitHub Pages (Current Setup)
+- **Static CV**: Automatically deployed to `https://kyaneos.github.io/cv/`
+- **Interactive CV**: Automatically deployed to `https://kyaneos.github.io/cv/interactive/`
 
 ### Personal Website
-- Upload HTML files from `generated/` folder to your web hosting
-- Link to PDF version for downloads
-- Update links in CV template as needed
+- Upload HTML files from `generated/` folder for static CV
+- Upload `interactive/` folder for interactive CV
+- Update links as needed
 
 ## 🤝 Contributing
 
