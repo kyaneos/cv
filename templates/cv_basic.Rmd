@@ -1,5 +1,5 @@
 ---
-title: "Justin Moran's CV"
+title: "Justin Moran CV"
 author: Justin Moran
 date: "`r Sys.Date()`"
 params:
