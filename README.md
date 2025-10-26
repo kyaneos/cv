@@ -24,12 +24,14 @@ The main CV system using R and datadrivencv for professional, maintainable CV ge
 
 ### 1. Generate Your CV
 ```bash
-# Main generation script (recommended)
+# Main generation script (recommended) - located at ./generate_cv.R
 Rscript generate_cv.R
 
 # Or use specific scripts
 Rscript scripts/render_strayer_style_cv.R
 ```
+
+**Note**: The main generation script is `generate_cv.R` in the root directory.
 
 ### 2. View Your CV
 - **Live version**: [kyaneos.github.io/cv](https://kyaneos.github.io/cv/)
