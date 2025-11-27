@@ -119,11 +119,7 @@ Manuscripts {data-icon=book}
 --------------------------------------------------------------------------------
 ::: aside
 ```{r}
-if(params$pdf_mode){
-  cat("Publications and manuscripts.")
-} else {
-  cat("Publications and manuscripts.")
-}
+
 ```
 :::
 ```{r}
@@ -208,6 +204,30 @@ software_template <- "
 \n\n\n"
 
 CV <- CV |> print_section('software', glue_template = software_template)
+```
+
+Mentorship {data-icon=fast-forward}
+--------------------------------------------------------------------------------
+::: aside
+```{r}
+
+```
+:::
+
+```{r}
+CV <- CV |> print_section('mentorship')
+```
+
+Community Memberships {data-icon=users}
+--------------------------------------------------------------------------------
+::: aside
+```{r}
+
+```
+:::
+
+```{r}
+CV <- CV |> print_section('community')
 ```
 
 ```{r}
