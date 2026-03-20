@@ -206,6 +206,18 @@ software_template <- "
 CV <- CV |> print_section('software', glue_template = software_template)
 ```
 
+Conference Activity {data-icon=chalkboard-user}
+--------------------------------------------------------------------------------
+::: aside
+```{r}
+
+```
+:::
+
+```{r}
+CV <- CV |> print_section('conference')
+```
+
 Mentorship {data-icon=fast-forward}
 --------------------------------------------------------------------------------
 ::: aside
