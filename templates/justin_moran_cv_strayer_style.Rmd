@@ -1,6 +1,6 @@
 ---
-title: "Justin Moran CV"
-author: Justin Moran
+title: "Justin Bonagura Moran CV"
+author: Justin Bonagura Moran
 date: "`r Sys.Date()`"
 params:
   pdf_mode:
@@ -89,7 +89,7 @@ Last updated on `r Sys.Date()`.
 Main
 ================================================================================
 
-Justin Moran {#title}
+Justin Bonagura Moran {#title}
 --------------------------------------------------------------------------------
 
 ```{r}
