@@ -1,1 +1,12 @@
 .DS_Store
+
+# Render artifacts
+templates/*.knit.md
+templates/*.utf8.md
+
+# datadrivencv/ is an upstream clone (nstrayer/cv) with local modifications.
+# Only the two files the template actually sources are tracked; the rest is
+# upstream's own rendered output and samples.
+datadrivencv/*
+!datadrivencv/CV_printing_functions.R
+!datadrivencv/dd_cv.css
